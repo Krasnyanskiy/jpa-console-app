@@ -7,7 +7,7 @@
     <persistence-unit name="simplePU">
 
         <!-- transaction-type="RESOURCE_LOCAL" -->
-        <!-- RESOURCE_LOCAL означает, что я сам отвечаю за управление транзакциями -->
+        <!-- `RESOURCE_LOCAL` meeans that I manage transactions by myself -->
 
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
