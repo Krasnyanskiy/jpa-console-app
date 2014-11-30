@@ -4,30 +4,39 @@
              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
+
     <persistence-unit name="simplePU">
-
-        <!-- transaction-type="RESOURCE_LOCAL" -->
-        <!-- `RESOURCE_LOCAL` meeans that I manage transactions by myself -->
-
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-
         <class>ua.krasnyanskiy.jpa.demo.dto.Category</class>
         <class>ua.krasnyanskiy.jpa.demo.dto.Order</class>
         <class>ua.krasnyanskiy.jpa.demo.dto.Product</class>
         <class>ua.krasnyanskiy.jpa.demo.dto.User</class>
-
         <properties>
             <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/eshop"/>
             <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
             <property name="openjpa.ConnectionUserName" value="postgres"/>
             <property name="openjpa.ConnectionPassword" value="memento"/>
+            <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
+        </properties>
+    </persistence-unit>
 
 
-            <!-- https://openjpa.apache.org/builds/2.2.2/apache-openjpa/docs/ref_guide_pc_enhance.html -->
+    <persistence-unit name="testPU">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <class>ua.krasnyanskiy.jpa.demo.dto.Category</class>
+        <class>ua.krasnyanskiy.jpa.demo.dto.Order</class>
+        <class>ua.krasnyanskiy.jpa.demo.dto.Product</class>
+        <class>ua.krasnyanskiy.jpa.demo.dto.User</class>
+        <properties>
+            <property name="openjpa.ConnectionURL"
+                      value="jdbc:postgresql://ec2-54-83-204-104.compute-1.amazonaws.com:5432/d3np7epjhgl15o?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
+            <property name="openjpa.ConnectionUserName" value="rdldfxghikfmlo"/>
+            <property name="openjpa.ConnectionPassword" value="4eLt8PEsyQt-O5V2pD3_DUMHbi"/>
             <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
 
-            <!-- ??? -->
-            <!--<property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=TRACE, Tool=TRACE, SQL=TRACE"/>-->
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/load-script.sql"/>
+
         </properties>
     </persistence-unit>
 </persistence>

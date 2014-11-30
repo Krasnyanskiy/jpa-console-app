@@ -1,6 +1,3 @@
--- @author Alexander Krasnyanskiy
-
-
 -- fill {User} table with data
 INSERT INTO user_table (name, email) VALUES ('Aatos', 'aatos@fin.com');
 INSERT INTO user_table (name, email) VALUES ('Ahti', 'ahti@fin.com');

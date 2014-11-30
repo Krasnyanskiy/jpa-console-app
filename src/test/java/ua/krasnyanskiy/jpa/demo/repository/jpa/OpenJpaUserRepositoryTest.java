@@ -60,7 +60,7 @@ public class OpenJpaUserRepositoryTest {
 
 
         /** When **/
-        User user = userRepository.get(1L);
+        User user = userRepository.findUserById(1L);
 
 
         /** Than **/
@@ -80,7 +80,7 @@ public class OpenJpaUserRepositoryTest {
 
 
         /** When **/
-        Collection<User> users = userRepository.getAll();
+        Collection<User> users = userRepository.getAllUsers();
 
 
         /** Than **/

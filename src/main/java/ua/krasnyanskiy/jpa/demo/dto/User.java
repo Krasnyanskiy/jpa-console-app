@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Collection;
 
 @Entity
@@ -23,6 +24,12 @@ public class User {
 
     @OneToMany
     private Collection<Order> orders;
+
+    /**
+     ** Secret field : do not persist it!
+     **/
+    @Transient
+    private String secretFiled;
 
     public User() {
     }
@@ -57,5 +64,13 @@ public class User {
 
     public void setOrders(Collection<Order> orders) {
         this.orders = orders;
+    }
+
+    public String getSecretFiled() {
+        return secretFiled;
+    }
+
+    public void setSecretFiled(String secretFiled) {
+        this.secretFiled = secretFiled;
     }
 }

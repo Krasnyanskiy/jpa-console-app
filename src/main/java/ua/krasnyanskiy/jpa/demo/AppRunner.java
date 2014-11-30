@@ -19,11 +19,11 @@ public class AppRunner {
         user.setEmail("miguel@gmail.com");
 
 
-        // fixme: need to find some solution for user saving
+        // fixme: need to find some good solution for user saving
         //userRepository.save(user);
         //System.out.println(userRepository.getAll());
 
-        user = userRepository.get(2L);
+        user = userRepository.findUserById(2L);
         System.out.println(" u = " + user.getEmail());
 
     }
