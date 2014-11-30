@@ -37,7 +37,7 @@ public class OpenJpaUserRepositoryIT {
     }
 
     @Test
-    public void should_return_all_user_with_given_name() {
+    public void should_return_all_users_with_given_name() {
         for (User user : userRepository.findUsersByName("Ahti")) {
             assertNotNull(user); // there is only one user with given name (`Ahti`)
         }
