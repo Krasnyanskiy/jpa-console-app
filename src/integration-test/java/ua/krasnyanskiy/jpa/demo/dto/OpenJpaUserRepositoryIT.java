@@ -16,9 +16,9 @@ import static org.testng.Assert.assertNotNull;
  */
 public class OpenJpaUserRepositoryIT {
 
-    private static final String INSERT_FIRST_USER = "INSERT INTO user_table (name, email) VALUES ('Aatos', 'aatos@fin.com');";
+    private static final String INSERT_FIRST_USER  = "INSERT INTO user_table (name, email) VALUES ('Aatos', 'aatos@fin.com');";
     private static final String INSERT_SECOND_USER = "INSERT INTO user_table (name, email) VALUES ('Ahti', 'ahti@fin.com')";
-    private static final String DELETE_FIRST_USER = "DELETE FROM user_table u where u.name = 'Aatos'";
+    private static final String DELETE_FIRST_USER  = "DELETE FROM user_table u where u.name = 'Aatos'";
     private static final String DELETE_SECOND_USER = "DELETE FROM user_table u where u.name = 'Ahti'";
 
     private EntityManager manager;
@@ -45,7 +45,6 @@ public class OpenJpaUserRepositoryIT {
 
     @AfterMethod
     public void after() {
-        manager = createEntityManagerFactory("testPU").createEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
             manager.createNativeQuery(DELETE_FIRST_USER).executeUpdate();
