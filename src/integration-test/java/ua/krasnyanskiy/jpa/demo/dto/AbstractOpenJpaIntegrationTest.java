@@ -18,7 +18,7 @@ import java.util.Collection;
 /**
  * @author Alexander Krasnyanskiy
  */
-public abstract class AbstractOpenJpaIntegrationUnitTest implements Populatable, Configurable, Cleanable {
+public abstract class AbstractOpenJpaIntegrationTest implements Populatable, Configurable, Cleanable {
 
     protected OpenJpaUserRepository userRepository;
     private EntityManager entityManager;

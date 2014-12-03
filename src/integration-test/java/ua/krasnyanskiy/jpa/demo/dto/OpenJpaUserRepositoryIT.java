@@ -11,7 +11,7 @@ import static org.testng.Assert.assertSame;
 /**
  * @author Alexander Krasnyanskiy
  */
-public class OpenJpaUserRepositoryIT extends AbstractOpenJpaIntegrationUnitTest {
+public class OpenJpaUserRepositoryIT extends AbstractOpenJpaIntegrationTest {
 
     @Test
     public void should_return_all_users_with_given_name() {
