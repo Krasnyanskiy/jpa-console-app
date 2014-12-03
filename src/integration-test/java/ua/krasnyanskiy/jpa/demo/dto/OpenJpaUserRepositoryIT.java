@@ -13,7 +13,7 @@ import static org.testng.Assert.assertSame;
 public class OpenJpaUserRepositoryIT extends AbstractOpenJpaIntegrationUnitTest {
 
     @Test
-    public void should_return_all_user_with_given_name() {
+    public void should_return_all_users_with_given_name() {
         for (User user : userRepository.findUsersByName("Ahti")) {
             assertNotNull(user);
         }
