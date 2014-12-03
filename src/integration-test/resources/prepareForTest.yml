@@ -1,0 +1,14 @@
+#
+# SQL queries for prepare the database for integration testing
+# author Alex Krasnyanskiy
+#
+
+populate:
+  - INSERT INTO user_table (name, email) VALUES ('Aatos', 'aatos@fin.com')
+  - INSERT INTO user_table (name, email) VALUES ('Ahti', 'ahti@fin.com')
+
+clean:
+  - DELETE FROM user_table u where u.name = 'Aatos'
+  - DELETE FROM user_table u where u.name = 'Ahti'
+
+

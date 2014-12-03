@@ -35,6 +35,8 @@
             <property name="openjpa.ConnectionPassword" value="4eLt8PEsyQt-O5V2pD3_DUMHbi"/>
             <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
 
+
+            <!-- sql uploading doesn't work for now -->
             <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/load-script.sql"/>
 
         </properties>
