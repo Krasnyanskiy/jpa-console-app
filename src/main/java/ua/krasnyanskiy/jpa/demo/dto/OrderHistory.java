@@ -2,15 +2,17 @@ package ua.krasnyanskiy.jpa.demo.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(name = "order_table_history")
@@ -18,14 +20,16 @@ public class OrderHistory {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = SEQUENCE, generator = "order_history_seq_gen")
+    @SequenceGenerator(name = "order_history_seq_gen", sequenceName = "order_history_table_id_seq")
     private Integer id;
 
-    @OneToOne(fetch= LAZY)
-    @JoinColumn(name="user_id")
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(fetch= LAZY)
-    @JoinColumn(name="order_id")
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Column(name = "total_price")
@@ -46,9 +50,10 @@ public class OrderHistory {
 
     /**
      * Copy Constructor.
+     *
      * @param history old OrderHistory entity to be copied
      */
-    public OrderHistory(OrderHistory history){
+    public OrderHistory(OrderHistory history) {
         this.date = history.getDate();
         this.user = history.getUser();
         this.order = history.getOrder();

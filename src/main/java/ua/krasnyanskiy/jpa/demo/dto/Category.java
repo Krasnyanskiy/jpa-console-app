@@ -2,10 +2,14 @@ package ua.krasnyanskiy.jpa.demo.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.Collection;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(name = "category_table")
@@ -13,12 +17,16 @@ public class Category {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = SEQUENCE,
+            generator = "category_seq_gen")
+    @SequenceGenerator(name = "category_seq_gen",
+            sequenceName = "category_table_id_seq")
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category")
     private Collection<Product> products;
 
     public Category() {

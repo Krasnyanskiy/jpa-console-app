@@ -59,7 +59,9 @@ public class OpenJpaUserRepository implements UserRepository {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void createUser(User user) {
+        manager.getTransaction().begin();
         manager.persist(user);
+        manager.getTransaction().commit();
     }
 }

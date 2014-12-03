@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import java.util.Collection;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertSame;
 
@@ -16,6 +17,7 @@ public class OpenJpaUserRepositoryIT extends AbstractOpenJpaIntegrationUnitTest 
     public void should_return_all_users_with_given_name() {
         for (User user : userRepository.findUsersByName("Ahti")) {
             assertNotNull(user);
+            assertEquals(user.getName(), "Ahti");
         }
     }
 

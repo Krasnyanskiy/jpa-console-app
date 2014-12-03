@@ -16,5 +16,5 @@ public interface UserRepository {
 
     void deleteUserBy(Long id);
 
-    void saveUser(User user);
+    void createUser(User user);
 }
