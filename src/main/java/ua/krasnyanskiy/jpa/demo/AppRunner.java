@@ -27,10 +27,10 @@ public class AppRunner {
         userRepository.deleteUserBy(10L);
     }
 
-    static User create (){
-        User user = new User();
-        user.setName("Sofiko");
-        user.setEmail("sofiko@gmail.com");
-        return user;
+    static User create() {
+        User _user = new User();
+        _user.setName("Sofiko");
+        _user.setEmail("sofiko@gmail.com");
+        return _user;
     }
 }

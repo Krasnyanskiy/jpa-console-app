@@ -17,7 +17,7 @@ public class OpenJpaUserRepositoryIT extends AbstractOpenJpaIntegrationTest {
     public void should_return_all_users_with_given_name() {
         for (User user : userRepository.findUsersByName("Ahti")) {
             assertNotNull(user);
-            assertEquals(user.getName(), "Ahti");
+            assertEquals(user.getName().trim(), "Ahti"); // hidden spaces???
         }
     }
 

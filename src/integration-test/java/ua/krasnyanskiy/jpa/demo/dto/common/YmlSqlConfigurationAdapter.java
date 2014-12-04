@@ -4,6 +4,7 @@ import java.util.Collection;
 
 /**
  * @author Alexander Krasnyanskiy
+ * @since 1.0
  */
 public class YmlSqlConfigurationAdapter {
 
@@ -13,7 +14,7 @@ public class YmlSqlConfigurationAdapter {
     public YmlSqlConfigurationAdapter() {
     }
 
-    public Collection<String> getPopulate() {
+    public Collection<String> getPopulateQueries() {
         return populate;
     }
 
@@ -21,7 +22,7 @@ public class YmlSqlConfigurationAdapter {
         this.populate = populate;
     }
 
-    public Collection<String> getClean() {
+    public Collection<String> getCleanQueries() {
         return clean;
     }
 

@@ -109,7 +109,7 @@ public class User {
         result = 31 * result + (orders != null ? orders.hashCode() : 0);
         return result;
     }
-    */
+
 
     @Override
     public String toString() {
@@ -120,4 +120,5 @@ public class User {
                 ", orders=" + orders +
                 '}';
     }
+    */
 }

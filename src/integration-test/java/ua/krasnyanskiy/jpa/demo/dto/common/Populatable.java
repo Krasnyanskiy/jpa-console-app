@@ -4,9 +4,10 @@ import javax.persistence.EntityManager;
 import java.util.Collection;
 
 /**
- * Main interface which loads the date to test database.
+ * Main interface for loading data to the test database.
  *
  * @author Alexander Krasnyanskiy
+ * @since 1.0
  */
 public interface Populatable {
 
@@ -16,11 +17,4 @@ public interface Populatable {
      * @param queries queries which contains the simple test data
      */
     void populate(EntityManager entityManager, Collection<String> queries);
-
-    /**
-     * Use this method to populate database with YML file data.
-     * @param entityManager given EntityManager
-     * @param pathToYmlConfig path to YML file
-     */
-    void populate(EntityManager entityManager, String pathToYmlConfig);
 }

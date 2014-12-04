@@ -10,31 +10,32 @@ import ua.krasnyanskiy.jpa.demo.dto.common.YmlSqlConfigurationAdapter;
 import ua.krasnyanskiy.jpa.demo.repository.jpa.OpenJpaUserRepository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.io.InputStream;
 import java.util.Collection;
 
 /**
  * @author Alexander Krasnyanskiy
+ * @since 1.0
  */
-public abstract class AbstractOpenJpaIntegrationTest implements Populatable, Configurable, Cleanable {
+public abstract class AbstractOpenJpaIntegrationTest extends ExecutionRunner implements Populatable, Configurable, Cleanable {
 
     protected OpenJpaUserRepository userRepository;
     private EntityManager entityManager;
-
+    private YmlSqlConfigurationAdapter configurationAdapter;
 
     @BeforeClass
     public void before() {
         entityManager = configure();
-        populate(entityManager, "prepareForTest.yml");
+        configurationAdapter = attach("testData.yml");
+        populate(entityManager, configurationAdapter.getPopulateQueries());
         userRepository = new OpenJpaUserRepository(entityManager);
     }
 
 
     @AfterClass
     public void after() {
-        clean(entityManager, "prepareForTest.yml");
+        clean(entityManager, configurationAdapter.getCleanQueries());
         entityManager.close();
         userRepository = null;
     }
@@ -48,50 +49,20 @@ public abstract class AbstractOpenJpaIntegrationTest implements Populatable, Con
 
     @Override
     public void populate(EntityManager entityManager, Collection<String> queries) {
-        EntityTransaction tx = entityManager.getTransaction();
-        tx.begin();
-        for (String query : queries) {
-            entityManager.createNativeQuery(query).executeUpdate();
-        }
-        tx.commit();
-    }
-
-
-    @Override
-    public void populate(EntityManager entityManager, String pathToYmlConfig) {
-        Yaml yaml = new Yaml();
-        InputStream resource = this.getClass().getClassLoader().getResourceAsStream(pathToYmlConfig);
-        YmlSqlConfigurationAdapter configurationAdapter = yaml.loadAs(resource, YmlSqlConfigurationAdapter.class);
-        EntityTransaction tx = entityManager.getTransaction();
-        tx.begin();
-        for (String query : configurationAdapter.getPopulate()) {
-            entityManager.createNativeQuery(query).executeUpdate();
-        }
-        tx.commit();
+        execute(entityManager, queries);
     }
 
 
     @Override
     public void clean(EntityManager entityManager, Collection<String> queries) {
-        EntityTransaction tx = entityManager.getTransaction();
-        tx.begin();
-        for (String query : queries) {
-            entityManager.createNativeQuery(query).executeUpdate();
-        }
-        tx.commit();
+        execute(entityManager, queries);
     }
 
 
     @Override
-    public void clean(EntityManager entityManager, String pathToYmlConfig) {
+    public YmlSqlConfigurationAdapter attach(String pathToYmlConfig) {
         Yaml yaml = new Yaml();
         InputStream resource = this.getClass().getClassLoader().getResourceAsStream(pathToYmlConfig);
-        YmlSqlConfigurationAdapter configurationAdapter = yaml.loadAs(resource, YmlSqlConfigurationAdapter.class);
-        EntityTransaction tx = entityManager.getTransaction();
-        tx.begin();
-        for (String query : configurationAdapter.getClean()) {
-            entityManager.createNativeQuery(query).executeUpdate();
-        }
-        tx.commit();
+        return yaml.loadAs(resource, YmlSqlConfigurationAdapter.class);
     }
 }
